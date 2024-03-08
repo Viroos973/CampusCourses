@@ -1,6 +1,7 @@
 import {Button, Form} from "react-bootstrap";
 import {useState} from "react";
 import {fetchLogin} from "../api/fetchLogin.js";
+import {URL_API} from "../const/url.js";
 
 const Login = () => {
     const [validated, setValidated] = useState(false)
@@ -15,7 +16,7 @@ const Login = () => {
             event.stopPropagation()
             setValidated(true)
         } else {
-            const error = await fetchLogin(event)
+            const error = await fetchLogin(event, URL_API.LOGIN_URL)
             setErrorText(error)
         }
     }

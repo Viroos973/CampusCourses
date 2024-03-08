@@ -1,5 +1,6 @@
 import {Container, Nav, Navbar} from "react-bootstrap";
 import {useRoles} from "../api/useRoles.js";
+import {ROUTES} from "../const/route.js";
 
 const NavbarComponent = () => {
     const roles = useRoles('')
@@ -16,7 +17,7 @@ const NavbarComponent = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        {roles !== '' ? (
+                        {localStorage.getItem("email") !== "" ? (
                             <Nav.Link href="/groups">Группы курсов</Nav.Link>
                         ) : null}
                         {roles !== '' && roles.isStudent ? (
@@ -35,8 +36,8 @@ const NavbarComponent = () => {
                             </>
                         ) : (
                             <>
-                                <Nav.Link>Регистрация</Nav.Link>
-                                <Nav.Link href="/login">Вход</Nav.Link>
+                                <Nav.Link href={ROUTES.REGISTER}>Регистрация</Nav.Link>
+                                <Nav.Link href={ROUTES.LOGIN}>Вход</Nav.Link>
                             </>
                         )}
                     </Nav>

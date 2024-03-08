@@ -1,7 +1,7 @@
 import axios from "axios";
 import {URL_API} from "../const/url.js";
 
-export const fetchLogin = async(event) => {
+export const fetchLogin = async(event, url) => {
     const formData = new FormData(event.target)
     const loginData = {}
 
@@ -10,7 +10,7 @@ export const fetchLogin = async(event) => {
     })
 
     try {
-        await axios.post(URL_API.BASE_URL + URL_API.LOGIN_URL, loginData)
+        await axios.post(URL_API.BASE_URL + url, loginData)
         localStorage.setItem("email", loginData.email)
         window.location.href = "/"
     } catch (error) {

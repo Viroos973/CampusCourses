@@ -3,5 +3,6 @@ export const URL_API = {
     ROLES_URL: "/roles",
     LOGIN_URL: "/login",
     REGISTER_URL: "/registration",
-    PROFILE_URL: "/profile"
+    PROFILE_URL: "/profile",
+    LOGOUT_URL: "/logout"
 }

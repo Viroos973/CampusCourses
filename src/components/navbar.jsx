@@ -1,14 +1,10 @@
 import {Container, Nav, Navbar} from "react-bootstrap";
 import {useRoles} from "../api/useRoles.js";
 import {ROUTES} from "../const/route.js";
+import {fetchLogOut} from "../api/fetchLogOut.js";
 
 const NavbarComponent = () => {
     const roles = useRoles({})
-
-    const handleLogout = () => {
-        localStorage.setItem("email", "")
-        window.location.reload()
-    }
 
     return (
         <Navbar expand="lg" data-bs-theme="dark" className="bg-secondary">
@@ -32,7 +28,7 @@ const NavbarComponent = () => {
                         {localStorage.getItem("email") !== "" ? (
                             <>
                                 <Nav.Link href={ROUTES.PROFILE}>{localStorage.getItem("email")}</Nav.Link>
-                                <Nav.Link onClick={handleLogout}>Выход</Nav.Link>
+                                <Nav.Link onClick={fetchLogOut}>Выход</Nav.Link>
                             </>
                         ) : (
                             <>

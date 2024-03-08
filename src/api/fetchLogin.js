@@ -10,8 +10,9 @@ export const fetchLogin = async(event, url) => {
     })
 
     try {
-        await axios.post(URL_API.BASE_URL + url, loginData)
+        const token = await axios.post(URL_API.BASE_URL + url, loginData)
         localStorage.setItem("email", loginData.email)
+        localStorage.setItem("token", token.data.token)
         window.location.href = "/"
     } catch (error) {
         return ('Неверные данные')

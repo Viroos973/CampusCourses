@@ -4,11 +4,21 @@ import {URL_API} from "../const/url.js";
 
 export const useRoles = (defaultValue) => {
     const [roles, setRoles] = useState(defaultValue)
+    const smt = `Bearer ${localStorage.getItem("token")}`
 
     useEffect(() => {
         const fetchRoles = async () => {
-            const response = await axios.get(URL_API.BASE_URL + URL_API.ROLES_URL)
-            setRoles(response.data)
+            try {
+                const response = await axios.get(URL_API.BASE_URL + URL_API.ROLES_URL, {
+                    headers: {
+                        Authorization: smt
+                    }
+                })
+                setRoles(response.data)
+            } catch (error) {
+                setRoles({})
+                localStorage.setItem("email", "")
+            }
         };
 
         fetchRoles()

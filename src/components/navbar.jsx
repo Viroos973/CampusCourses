@@ -3,7 +3,7 @@ import {useRoles} from "../api/useRoles.js";
 import {ROUTES} from "../const/route.js";
 
 const NavbarComponent = () => {
-    const roles = useRoles('')
+    const roles = useRoles({})
 
     const handleLogout = () => {
         localStorage.setItem("email", "")
@@ -20,10 +20,10 @@ const NavbarComponent = () => {
                         {localStorage.getItem("email") !== "" ? (
                             <Nav.Link href="/groups">Группы курсов</Nav.Link>
                         ) : null}
-                        {roles !== '' && roles.isStudent ? (
+                        {roles !== {} && roles.isStudent ? (
                             <Nav.Link href="/courses/my">Мои курсы</Nav.Link>
                         ) : null}
-                        {roles !== '' && roles.isTeacher ? (
+                        {roles !== {} && roles.isTeacher ? (
                             <Nav.Link href="/courses/teaching">Преподаваемые курсы</Nav.Link>
                         ) : null}
                     </Nav>
@@ -31,7 +31,7 @@ const NavbarComponent = () => {
                     <Nav>
                         {localStorage.getItem("email") !== "" ? (
                             <>
-                                <Nav.Link>{localStorage.getItem("email")}</Nav.Link>
+                                <Nav.Link href={ROUTES.PROFILE}>{localStorage.getItem("email")}</Nav.Link>
                                 <Nav.Link onClick={handleLogout}>Выход</Nav.Link>
                             </>
                         ) : (

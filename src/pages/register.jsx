@@ -1,7 +1,7 @@
 import {Button, Form} from "react-bootstrap";
 import {useState} from "react";
-import {fetchLogin} from "../api/fetchLogin.js";
 import {URL_API} from "../const/url.js";
+import {axiosLogin} from "../api/request/index.js";
 
 const Register = () => {
     const [validated, setValidated] = useState(false);
@@ -20,7 +20,7 @@ const Register = () => {
             event.stopPropagation()
             setValidated(true)
         } else {
-            const error = await fetchLogin(event, URL_API.REGISTER_URL)
+            const error = await axiosLogin(event, URL_API.REGISTER_URL)
             setErrorText(error)
         }
     }

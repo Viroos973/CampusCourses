@@ -1,7 +1,6 @@
-import axios from "axios";
-import {URL_API} from "../const/url.js";
+import {api} from "../instance.js";
 
-export const fetchLogin = async(event, url) => {
+export const axiosLogin = async(event, url) => {
     const formData = new FormData(event.target)
     const loginData = {}
 
@@ -10,11 +9,11 @@ export const fetchLogin = async(event, url) => {
     })
 
     try {
-        const token = await axios.post(URL_API.BASE_URL + url, loginData)
+        const token = await api.post(url, loginData)
         localStorage.setItem("email", loginData.email)
         localStorage.setItem("token", token.data.token)
         window.location.href = "/"
-    } catch (error) {
+    } catch {
         return ('Неверные данные')
     }
 }

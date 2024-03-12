@@ -1,10 +1,10 @@
 import {Container, Nav, Navbar} from "react-bootstrap";
-import {useRoles} from "../api/useRoles.js";
+import {useRoles} from "../api/hook/index.js";
 import {ROUTES} from "../const/route.js";
-import {fetchLogOut} from "../api/fetchLogOut.js";
+import {axiosLogOut} from "../api/request/index.js";
 
 const NavbarComponent = () => {
-    const roles = useRoles({})
+    const roles = useRoles(null)
 
     return (
         <Navbar expand="lg" data-bs-theme="dark" className="bg-secondary">
@@ -16,10 +16,10 @@ const NavbarComponent = () => {
                         {localStorage.getItem("email") !== "" ? (
                             <Nav.Link href="/groups">Группы курсов</Nav.Link>
                         ) : null}
-                        {roles !== {} && roles.isStudent ? (
+                        {roles !== null && roles.isStudent ? (
                             <Nav.Link href="/courses/my">Мои курсы</Nav.Link>
                         ) : null}
-                        {roles !== {} && roles.isTeacher ? (
+                        {roles !== null && roles.isTeacher ? (
                             <Nav.Link href="/courses/teaching">Преподаваемые курсы</Nav.Link>
                         ) : null}
                     </Nav>
@@ -28,7 +28,7 @@ const NavbarComponent = () => {
                         {localStorage.getItem("email") !== "" ? (
                             <>
                                 <Nav.Link href={ROUTES.PROFILE}>{localStorage.getItem("email")}</Nav.Link>
-                                <Nav.Link onClick={fetchLogOut}>Выход</Nav.Link>
+                                <Nav.Link onClick={axiosLogOut}>Выход</Nav.Link>
                             </>
                         ) : (
                             <>

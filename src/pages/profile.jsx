@@ -1,8 +1,8 @@
 import {useState} from "react";
 import {URL_API} from "../const/url.js";
 import {Button, Col, Form, Row} from "react-bootstrap";
-import {useProfile} from "../api/useProfile.js";
-import {fetchEdit} from "../api/fetchEdit.js";
+import {useProfile} from "../api/hook/index.js";
+import {axiosEdit} from "../api/request/index.js";
 
 const Profile = () => {
     const [validated, setValidated] = useState(false)
@@ -18,7 +18,7 @@ const Profile = () => {
             event.stopPropagation()
             setValidated(true)
         } else {
-            const error = await fetchEdit(event, URL_API.PROFILE_URL)
+            const error = await axiosEdit(event, URL_API.PROFILE_URL)
             setErrorText(error)
         }
     }

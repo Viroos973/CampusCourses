@@ -5,6 +5,7 @@ import Login from "./pages/login.jsx";
 import Register from "./pages/register.jsx";
 import Profile from "./pages/profile.jsx";
 import Greetings from "./components/Greetings.jsx";
+import ListGroups from "./pages/listGroup.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
             {
                 path: ROUTES.PROFILE,
                 element: <Profile />
+            },
+            {
+                path: ROUTES.GROUP_COURSES,
+                element: <ListGroups/>
             }
         ]
     }

@@ -14,7 +14,7 @@ const NavbarComponent = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         {localStorage.getItem("email") !== "" ? (
-                            <Nav.Link href="/groups">Группы курсов</Nav.Link>
+                            <Nav.Link href={ROUTES.GROUP_COURSES}>Группы курсов</Nav.Link>
                         ) : null}
                         {roles !== null && roles.isStudent ? (
                             <Nav.Link href="/courses/my">Мои курсы</Nav.Link>

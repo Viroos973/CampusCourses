@@ -4,5 +4,6 @@ export const URL_API = {
     LOGIN_URL: "/login",
     REGISTER_URL: "/registration",
     PROFILE_URL: "/profile",
-    LOGOUT_URL: "/logout"
+    LOGOUT_URL: "/logout",
+    LIST_GROUP_COURSES: "/groups"
 }

@@ -62,11 +62,11 @@ const ListItemGroup = ({id, name, isAdmin, editItem, deleteItem}) => {
 }
 
 ListItemGroup.propTypes = {
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     isAdmin: PropTypes.bool.isRequired,
     editItem: PropTypes.func.isRequired,
-    deleteItem: PropTypes.func.isRequired,
+    deleteItem: PropTypes.func.isRequired
 }
 
 export default ListItemGroup

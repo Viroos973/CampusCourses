@@ -6,6 +6,7 @@ import Register from "./pages/register.jsx";
 import Profile from "./pages/profile.jsx";
 import Greetings from "./components/Greetings.jsx";
 import ListGroups from "./pages/listGroup.jsx";
+import ListCourses from "./pages/listCourses.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -31,6 +32,18 @@ export const router = createBrowserRouter([
             {
                 path: ROUTES.GROUP_COURSES,
                 element: <ListGroups/>
+            },
+            {
+                path: ROUTES.GROUP,
+                element: <ListCourses url={""}/>
+            },
+            {
+                path: ROUTES.COURSE_MY,
+                element: <ListCourses url={"my"}/>
+            },
+            {
+                path: ROUTES.COURSE_TEACHING,
+                element: <ListCourses url={"teaching"}/>
             }
         ]
     }

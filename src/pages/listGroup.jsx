@@ -1,7 +1,6 @@
 import {Button, Form, ListGroup, Modal} from "react-bootstrap";
-import {useGroup} from "../api/hook/useGroup.js";
 import ListItemGroup from "../components/listItemGroup.jsx";
-import {useRoles} from "../api/hook/index.js";
+import {useRoles, useGroup} from "../api/hook/index.js";
 import {useState} from "react";
 
 const ListGroups = () => {

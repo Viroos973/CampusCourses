@@ -3,9 +3,11 @@ import {Button, ListGroup} from "react-bootstrap";
 import ListItemCourses from "../components/listItemCourses.jsx";
 import PropTypes from "prop-types";
 import {useSelector} from "react-redux";
+import {useGroup} from "../api/hook/index.js";
 
 const ListCourses = ({url}) => {
-    const [data, loading, error] = useCourse(null, url)
+    const [groupId, dataCourse, loading, error] = useCourse(null, url)
+    const [data] = useGroup(null)
     const roles = useSelector(state => state.roles)
 
     return (
@@ -18,7 +20,7 @@ const ListCourses = ({url}) => {
                 ) : (
                     <>
                         {url === "" ? (
-                            <h2 className="mt-4">Группа - </h2>
+                            <h2 className="mt-4">Группа - {data === null ? null : data.find(item => item.id === groupId).name}</h2>
                         ) : url === "my" ? (
                             <h2 className="mt-4">Мои курсы</h2>
                         ) : (
@@ -30,7 +32,7 @@ const ListCourses = ({url}) => {
                         ) : null}
 
                         <ListGroup className="mb-4 mt-3">
-                            {data.map((item) => (
+                            {dataCourse.map((item) => (
                                 <ListItemCourses key={item.id} {...item}/>
                             ))}
                         </ListGroup>

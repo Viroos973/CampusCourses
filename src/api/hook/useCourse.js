@@ -5,7 +5,7 @@ import swal from "sweetalert";
 import {useParams} from "react-router-dom";
 
 export const useCourse = (defaultValue, url) => {
-    const [data, setData] = useState(defaultValue)
+    const [dataCourse, setData] = useState(defaultValue)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
     const [update, setUpdate] = useState(false)
@@ -46,5 +46,5 @@ export const useCourse = (defaultValue, url) => {
         }
     }
 
-    return [data, loading, error, addCourse]
+    return [groupId, dataCourse, loading, error, addCourse]
 }

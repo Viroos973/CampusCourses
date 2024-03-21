@@ -12,7 +12,7 @@ export const axiosLogin = async(event, url) => {
         const token = await api.post(url, loginData)
         localStorage.setItem("email", loginData.email)
         localStorage.setItem("token", token.data.token)
-        window.location.href = "/"
+        window.location.href = "/groups"
     } catch {
         return ('Неверные данные')
     }

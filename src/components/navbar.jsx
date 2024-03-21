@@ -2,9 +2,12 @@ import {Container, Nav, Navbar} from "react-bootstrap";
 import {useRoles} from "../api/hook/index.js";
 import {ROUTES} from "../const/route.js";
 import {axiosLogOut} from "../api/request/index.js";
+import {useDispatch, useSelector} from "react-redux";
 
 const NavbarComponent = () => {
-    const roles = useRoles(null)
+    const dispatch = useDispatch()
+    const roles = useSelector(state => state.roles)
+    useRoles(dispatch)
 
     return (
         <Navbar expand="lg" data-bs-theme="dark" className="bg-secondary">

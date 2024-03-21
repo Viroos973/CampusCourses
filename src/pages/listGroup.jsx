@@ -1,13 +1,14 @@
 import {Button, Form, ListGroup, Modal} from "react-bootstrap";
 import ListItemGroup from "../components/listItemGroup.jsx";
-import {useRoles, useGroup} from "../api/hook/index.js";
+import {useGroup} from "../api/hook/index.js";
 import {useState} from "react";
+import {useSelector} from "react-redux";
 
 const ListGroups = () => {
     const [show, setShow] = useState(false)
     const [validated, setValidated] = useState(false)
     const [data, loading, error, addItem, deleteItem, editItem] = useGroup(null)
-    const role = useRoles(null)
+    const roles = useSelector(state => state.roles)
 
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
@@ -36,13 +37,13 @@ const ListGroups = () => {
                     <>
                         <h2 className="mt-4">Группы кампусных курсов</h2>
 
-                        {role !== null && role.isAdmin ? (
+                        {roles !== null && roles.isAdmin ? (
                             <Button variant="primary" type="button" onClick={handleShow} className="mb-2">Создать</Button>
                         ) : null}
 
                         <ListGroup className="mb-4 mt-3">
                             {data.map((item) => (
-                                <ListItemGroup key={item.id} {...item} isAdmin={role === null ? false : role.isAdmin} editItem={editItem} deleteItem={deleteItem} />
+                                <ListItemGroup key={item.id} {...item} isAdmin={roles === null ? false : roles.isAdmin} editItem={editItem} deleteItem={deleteItem} />
                             ))}
                         </ListGroup>
                     </>

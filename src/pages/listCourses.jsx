@@ -1,12 +1,12 @@
 import {useCourse} from "../api/hook/useCourse.js";
 import {Button, ListGroup} from "react-bootstrap";
-import {useRoles} from "../api/hook/index.js";
 import ListItemCourses from "../components/listItemCourses.jsx";
 import PropTypes from "prop-types";
+import {useSelector} from "react-redux";
 
 const ListCourses = ({url}) => {
     const [data, loading, error] = useCourse(null, url)
-    const role = useRoles(null)
+    const roles = useSelector(state => state.roles)
 
     return (
         <>
@@ -25,7 +25,7 @@ const ListCourses = ({url}) => {
                             <h2 className="mt-4">Преподаваемые курсы</h2>
                         )}
 
-                        {role !== null && role.isAdmin && url === "" ? (
+                        {roles !== null && roles.isAdmin && url === "" ? (
                             <Button variant="primary" type="button" className="my-2">СОЗДАТЬ КУРС</Button>
                         ) : null}
 

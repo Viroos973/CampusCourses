@@ -26,7 +26,7 @@ export const useCourse = (defaultValue, url) => {
         axiosCourse()
     }, [update])
 
-    const addCourse = async (event) => {
+    const addCourse = async (event, requirements, annotations, handleClose) => {
         const formData = new FormData(event.target)
         const newItem = {}
 
@@ -34,9 +34,13 @@ export const useCourse = (defaultValue, url) => {
             newItem[key] = value
         })
 
+        newItem['requirements'] = requirements
+        newItem['annotations'] = annotations
+
         try {
             await api.post(URL_API.LIST_GROUP_COURSES + '/' + groupId, newItem)
             setUpdate(prev => !prev)
+            handleClose()
         } catch {
             await swal({
                 title: "Что-то пошло не так",

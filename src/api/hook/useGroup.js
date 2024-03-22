@@ -24,7 +24,7 @@ export const useGroup = (defaultValue) => {
         axiosGroup()
     }, [update])
 
-    const addItem = async(event) => {
+    const addItem = async(event, handleClose) => {
         const formData = new FormData(event.target)
         const newItem = {}
 
@@ -40,6 +40,7 @@ export const useGroup = (defaultValue) => {
                 text: `Вы успешно создали группу ${newItem.name}`,
                 icon: "success"
             })
+            handleClose()
         } catch {
             await swal({
                 title: "Что-то пошло не так",
@@ -80,7 +81,7 @@ export const useGroup = (defaultValue) => {
         }
     }
 
-    const editItem = async(event, itemId) => {
+    const editItem = async(event, itemId, handleClose) => {
         const willDelete = await swal({
             title: "Вы уверены, что хотите изменить название этой группы",
             text: "После изменения названия вы уже не сможете востановить прежнее",
@@ -103,6 +104,7 @@ export const useGroup = (defaultValue) => {
                     text: "Группа успешно изменена",
                     icon: "success"
                 })
+                handleClose()
                 setUpdate(prev => !prev)
             } catch {
                 await swal({

@@ -7,7 +7,6 @@ const Register = () => {
     const [validated, setValidated] = useState(false);
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-    const [error, setError] = useState("Пароль должен содержать больше 5 символов")
     const [errorConfirm, setErrorConfirm] = useState("Поле должно быть заполнено")
     const [errorText, setErrorText] = useState('')
 
@@ -27,14 +26,6 @@ const Register = () => {
 
     const handlePassword = (event) => {
         setPassword(event.target.value)
-
-        if (password.length > 32) {
-            setError("Пароль должен содержать меньше 33 символов")
-        }
-
-        if (password.length < 6) {
-            setError("Пароль должен содержать больше 5 символов")
-        }
     }
 
     const handleConfirmPassword = (event) => {
@@ -77,16 +68,19 @@ const Register = () => {
                 <Form.Group className="mt-3">
                     <Form.Label>Пароль</Form.Label>
                     <Form.Control
+                        minLength="6"
+                        maxLength="32"
                         required
                         type="password"
                         name="password"
-                        onChange={handlePassword}
-                        isInvalid={(password.length < 6 || password.length > 32) && validated}/>
-                    <Form.Control.Feedback type="invalid">{error}</Form.Control.Feedback>
+                        onChange={handlePassword}/>
+                    <Form.Control.Feedback type="invalid">Пароль должен содержать больше 5 символов</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group className="my-3">
                     <Form.Label>Повторите пароль</Form.Label>
                     <Form.Control
+                        minLength="6"
+                        maxLength="32"
                         required
                         type="password"
                         name="confirmPassword"

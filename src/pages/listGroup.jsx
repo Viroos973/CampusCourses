@@ -11,7 +11,9 @@ const ListGroups = () => {
     const roles = useSelector(state => state.roles)
 
     const handleClose = () => setShow(false)
+
     const handleShow = () => setShow(true)
+
     const handleSubmit = async(event) => {
         event.preventDefault()
 
@@ -21,8 +23,7 @@ const ListGroups = () => {
             event.stopPropagation()
             setValidated(true)
         } else {
-            await addItem(event)
-            setShow(false)
+            await addItem(event, handleClose)
         }
     }
 

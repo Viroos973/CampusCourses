@@ -18,8 +18,7 @@ const ListItemGroup = ({id, name, isAdmin, editItem, deleteItem}) => {
             event.stopPropagation()
             setValidated(true)
         } else {
-            await editItem(event, id)
-            setShow(false)
+            await editItem(event, id, handleClose)
         }
     }
 

@@ -40,7 +40,7 @@ const ListCourses = ({url}) => {
 
         const form = event.currentTarget
 
-        if (form.checkValidity() === false){
+        if (form.checkValidity() === false || requirements === "" || annotations === ""){
             event.stopPropagation()
             setValidated(true)
         } else {
@@ -109,12 +109,14 @@ const ListCourses = ({url}) => {
                             <ReactQuill modules={{
                                 toolbar: ToolBar
                             }} onChange={handleSetRequirements}/>
+                            <span className="text-danger">{requirements === "" && validated ? "Поле должно быть заполнено" : null}</span>
                         </Form.Group>
                         <Form.Group className="mt-3">
                             <Form.Label>Аннотации</Form.Label>
                             <ReactQuill modules={{
                                 toolbar: ToolBar
                             }} onChange={handleSetAnnotations}/>
+                            <span className="text-danger">{annotations === "" && validated ? "Поле должно быть заполнено" : null}</span>
                         </Form.Group>
                         <Form.Group className="mt-3">
                             <Form.Label>Основной преподователь курса</Form.Label>

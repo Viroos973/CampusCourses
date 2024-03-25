@@ -103,5 +103,28 @@ export const useCourseDetail = (defaultValue) => {
         }
     }
 
-    return [data, loading, error, signUpCourse, editCourseAdmin, editCourseTeacher, editStatus]
+    const addNotification = async(event, handleClose) => {
+        const formData = new FormData(event.target)
+        const newItem = {}
+
+        formData.forEach((value, key) => {
+            newItem[key] = value
+        })
+
+        newItem["isImportant"] = newItem["isImportant"] === "on"
+
+        try {
+            await api.post(URL_API.LIST_COURSES + '/' + courseId + "/notifications", newItem)
+            setUpdate(prev => !prev)
+            handleClose()
+        } catch {
+            await swal({
+                title: "Что-то пошло не так",
+                text: "Произошла ошибка при создании группы",
+                icon: "error"
+            })
+        }
+    }
+
+    return [data, loading, error, signUpCourse, editCourseAdmin, editCourseTeacher, editStatus, addNotification]
 }

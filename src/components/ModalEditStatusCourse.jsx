@@ -25,7 +25,7 @@ const ModalEditStatusCourse = ({handleClose, show, editStatus, status}) => {
             </Modal.Header>
             <Form noValidate validated={validated} onSubmit={handleSubmit}>
                 <Modal.Body>
-                    <Form.Group className="">
+                    <Form.Group>
                         <Form.Label>Семестр</Form.Label>
                         <Form.Check type="radio"
                                     label="Открыт для записи"

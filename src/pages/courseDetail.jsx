@@ -6,9 +6,10 @@ import {useSelector} from "react-redux";
 import CourseDetailCard from "../components/CourseDetailCard.jsx";
 import ModalEditTeacherCourse from "../components/ModalEditTeacherCourse.jsx";
 import {useCourse} from "../api/hook/useCourse.js";
+import RequirementsAndAnnotationCard from "../components/RequirementsAndAnnotationCard.jsx";
 
 const CourseDetail = () => {
-    const [data, loading, error, signUpCourse, editCourseAdmin, editCourseTeacher, editStatus] = useCourseDetail(null)
+    const [data, loading, error, signUpCourse, editCourseAdmin, editCourseTeacher, editStatus, addNotification] = useCourseDetail(null)
     const [dataCourse] = useCourse(null, "my")
     const [show, setShow] = useState(false)
     const roles = useSelector(state => state.roles)
@@ -37,6 +38,9 @@ const CourseDetail = () => {
                                           isTeacher={data.teachers.some(teach => teach.email === localStorage.getItem("email"))}
                                           isStudent={dataCourse !== null && dataCourse.some(course => course.id === data.id)}
                                           editStatus={editStatus}/>
+                        <RequirementsAndAnnotationCard {...data} isAdmin={roles !== null && roles.isAdmin}
+                                          isTeacher={data.teachers.some(teach => teach.email === localStorage.getItem("email"))}
+                                          addNotification={addNotification}/>
                     </>
                 )}
             </div>

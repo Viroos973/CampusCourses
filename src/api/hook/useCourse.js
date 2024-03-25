@@ -50,5 +50,5 @@ export const useCourse = (defaultValue, url) => {
         }
     }
 
-    return [groupId, dataCourse, loading, error, addCourse]
+    return [dataCourse, groupId, loading, error, addCourse]
 }

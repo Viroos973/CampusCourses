@@ -7,6 +7,7 @@ import Profile from "./pages/profile.jsx";
 import Greetings from "./components/Greetings.jsx";
 import ListGroups from "./pages/listGroup.jsx";
 import ListCourses from "./pages/listCourses.jsx";
+import CourseDetail from "./pages/courseDetail.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
             {
                 path: ROUTES.COURSE_TEACHING,
                 element: <ListCourses url={"teaching"}/>
+            },
+            {
+                path: ROUTES.COURSES,
+                element: <CourseDetail/>
             }
         ]
     }

@@ -1,31 +1,18 @@
-import {Button, Form, ListGroup, Modal} from "react-bootstrap";
-import ListItemGroup from "../components/listItemGroup.jsx";
+import {Button, ListGroup} from "react-bootstrap";
+import ListItemGroup from "../components/ListItemGroup.jsx";
 import {useGroup} from "../api/hook/index.js";
 import {useState} from "react";
 import {useSelector} from "react-redux";
+import ModalCreateAndEditGroupCourse from "../components/Modals/ModalCreateAndEditGroupCourse.jsx";
 
 const ListGroups = () => {
     const [show, setShow] = useState(false)
-    const [validated, setValidated] = useState(false)
     const [data, loading, error, addItem, deleteItem, editItem] = useGroup(null)
-    const roles = useSelector(state => state.roles)
+    const roles = useSelector(state => state.roles.roles)
 
     const handleClose = () => setShow(false)
 
     const handleShow = () => setShow(true)
-
-    const handleSubmit = async(event) => {
-        event.preventDefault()
-
-        const form = event.currentTarget
-
-        if (form.checkValidity() === false){
-            event.stopPropagation()
-            setValidated(true)
-        } else {
-            await addItem(event, handleClose)
-        }
-    }
 
     return (
         <>
@@ -51,22 +38,7 @@ const ListGroups = () => {
                 )}
             </div>
 
-            <Modal show={show} backdrop="static" keyboard={false} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Создание группы</Modal.Title>
-                </Modal.Header>
-                <Form noValidate validated={validated} onSubmit={handleSubmit}>
-                    <Modal.Body>
-                        <Form.Label>Название группы</Form.Label>
-                        <Form.Control type="text" name="name" required/>
-                        <Form.Control.Feedback type="invalid">Поле должно быть заполнено</Form.Control.Feedback>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" type="button" onClick={handleClose}>Отмена</Button>
-                        <Button variant="primary" type="submit">Сохранить</Button>
-                    </Modal.Footer>
-                </Form>
-            </Modal>
+            <ModalCreateAndEditGroupCourse editOrCreateGroup={addItem} handleClose={handleClose} show={show}/>
         </>
     )
 }

@@ -81,7 +81,7 @@ export const useGroup = (defaultValue) => {
         }
     }
 
-    const editItem = async(event, itemId, handleClose) => {
+    const editItem = async(event, handleClose, itemId) => {
         const willDelete = await swal({
             title: "Вы уверены, что хотите изменить название этой группы",
             text: "После изменения названия вы уже не сможете востановить прежнее",

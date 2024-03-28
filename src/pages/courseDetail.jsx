@@ -1,18 +1,20 @@
 import {useCourseDetail} from "../api/hook/useCourseDetail.js";
-import ModalCreateAndEditCourse from "../components/ModalCreateAndEditCourse.jsx";
+import ModalCreateAndEditCourse from "../components/Modals/ModalCreateAndEditCourse.jsx";
 import {Button} from "react-bootstrap";
 import {useState} from "react";
 import {useSelector} from "react-redux";
 import CourseDetailCard from "../components/CourseDetailCard.jsx";
-import ModalEditTeacherCourse from "../components/ModalEditTeacherCourse.jsx";
+import ModalEditTeacherCourse from "../components/Modals/ModalEditTeacherCourse.jsx";
 import {useCourse} from "../api/hook/useCourse.js";
 import RequirementsAndAnnotationCard from "../components/RequirementsAndAnnotationCard.jsx";
+import UsersInCourseCard from "../components/UsersInCourseCard.jsx";
 
 const CourseDetail = () => {
-    const [data, loading, error, signUpCourse, editCourseAdmin, editCourseTeacher, editStatus, addNotification] = useCourseDetail(null)
+    const [data, loading, error, signUpCourse, editCourseAdmin, editCourseTeacher,
+        editStatus, addNotification, editStatusStudent, addMark, addTeacher] = useCourseDetail(null)
     const [dataCourse] = useCourse(null, "my")
     const [show, setShow] = useState(false)
-    const roles = useSelector(state => state.roles)
+    const roles = useSelector(state => state.roles.roles)
 
     const handleClose = () => setShow(false)
 
@@ -35,12 +37,15 @@ const CourseDetail = () => {
                             ) : null}
                         </div>
                         <CourseDetailCard {...data} signUpCourse={signUpCourse} isAdmin={roles !== null && roles.isAdmin}
-                                          isTeacher={data.teachers.some(teach => teach.email === localStorage.getItem("email"))}
-                                          isStudent={dataCourse !== null && dataCourse.some(course => course.id === data.id)}
-                                          editStatus={editStatus}/>
+                                           isTeacher={data.teachers.some(teach => teach.email === localStorage.getItem("email"))}
+                                           isStudent={dataCourse !== null && dataCourse.some(course => course.id === data.id)}
+                                           editStatus={editStatus}/>
                         <RequirementsAndAnnotationCard {...data} isAdmin={roles !== null && roles.isAdmin}
-                                          isTeacher={data.teachers.some(teach => teach.email === localStorage.getItem("email"))}
-                                          addNotification={addNotification}/>
+                                           isTeacher={data.teachers.some(teach => teach.email === localStorage.getItem("email"))}
+                                           addNotification={addNotification}/>
+                        <UsersInCourseCard isAdmin={roles !== null && roles.isAdmin} {...data} editStatusStudent={editStatusStudent} addMark={addMark}
+                                           isMainTeacher={data.teachers.some(teach => teach.email === localStorage.getItem("email") && teach.isMain)}
+                                           addTeacher={addTeacher}/>
                     </>
                 )}
             </div>

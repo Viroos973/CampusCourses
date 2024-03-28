@@ -4,7 +4,7 @@ const initialState = {
     roles: null
 }
 
-const roleReducer = (state = initialState, action) => {
+export const roleReducer = (state = initialState, action) => {
     switch (action.type) {
         case ACTIONS.GET_ROLES:
             return { ...state, roles: action.payload}
@@ -12,5 +12,3 @@ const roleReducer = (state = initialState, action) => {
             return state
     }
 }
-
-export default roleReducer

@@ -1,6 +1,6 @@
 import {Button, Card, Col, ListGroup, Row} from "react-bootstrap";
 import PropTypes from "prop-types";
-import ModalEditStatusCourse from "./ModalEditStatusCourse.jsx";
+import ModalEditStatusCourse from "./Modals/ModalEditStatusCourse.jsx";
 import {useState} from "react";
 
 const CourseDetailCard = ({startYear, maximumStudentsCount, studentsEnrolledCount, studentsInQueueCount, status,

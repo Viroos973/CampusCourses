@@ -19,7 +19,7 @@ const ModalEditStatusCourse = ({handleClose, show, editStatus, status}) => {
     }
 
     return (
-        <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false} size="xl">
+        <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
             <Modal.Header closeButton>
                 <Modal.Title>Изменение статуса курса</Modal.Title>
             </Modal.Header>

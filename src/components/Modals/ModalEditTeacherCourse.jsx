@@ -1,6 +1,6 @@
 import {Button, Form, Modal} from "react-bootstrap";
 import ReactQuill from "react-quill";
-import {ToolBar} from "../const/ToolBar.js";
+import {ToolBar} from "../../const/ToolBar.js";
 import {useEffect, useState} from "react";
 import PropTypes from "prop-types";
 

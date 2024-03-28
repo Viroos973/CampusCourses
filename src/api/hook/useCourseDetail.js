@@ -126,5 +126,66 @@ export const useCourseDetail = (defaultValue) => {
         }
     }
 
-    return [data, loading, error, signUpCourse, editCourseAdmin, editCourseTeacher, editStatus, addNotification]
+    const editStatusStudent = async(status, userId) => {
+        const newItem = {}
+        newItem["status"] = status
+
+        try {
+            await api.post(URL_API.LIST_COURSES + '/' + courseId + "/student-status/" + userId, newItem)
+            setUpdate(prev => !prev)
+        } catch {
+            await swal({
+                title: "Что-то пошло не так",
+                text: "Произошла ошибка при создании группы",
+                icon: "error"
+            })
+        }
+    }
+
+    const addMark = async(event, type, id, handleClose) => {
+        const formData = new FormData(event.target)
+        const newItem = {}
+
+        formData.forEach((value, key) => {
+            newItem[key] = value
+        })
+
+        newItem["markType"] = type
+
+        try {
+            await api.post(URL_API.LIST_COURSES + '/' + courseId + "/marks/" + id, newItem)
+            setUpdate(prev => !prev)
+            handleClose()
+        } catch {
+            await swal({
+                title: "Что-то пошло не так",
+                text: "Произошла ошибка при создании группы",
+                icon: "error"
+            })
+        }
+    }
+
+    const addTeacher = async(event, handleClose) => {
+        const formData = new FormData(event.target)
+        const newItem = {}
+
+        formData.forEach((value, key) => {
+            newItem[key] = value
+        })
+
+        try {
+            await api.post(URL_API.LIST_COURSES + '/' + courseId + "/teachers", newItem)
+            setUpdate(prev => !prev)
+            handleClose()
+        } catch {
+            await swal({
+                title: "Что-то пошло не так",
+                text: "Произошла ошибка при создании группы",
+                icon: "error"
+            })
+        }
+    }
+
+    return [data, loading, error, signUpCourse, editCourseAdmin, editCourseTeacher, editStatus,
+        addNotification, editStatusStudent, addMark, addTeacher]
 }

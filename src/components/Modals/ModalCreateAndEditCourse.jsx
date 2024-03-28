@@ -1,16 +1,19 @@
 import {Button, Form, Modal} from "react-bootstrap";
 import ReactQuill from "react-quill";
-import {ToolBar} from "../const/ToolBar.js";
+import {ToolBar} from "../../const/ToolBar.js";
 import {useEffect, useState} from "react";
-import {useListUsers} from "../api/hook/index.js";
+import {useListUsers} from "../../api/hook/index.js";
 import PropTypes from "prop-types";
+import {useDispatch, useSelector} from "react-redux";
 
 const ModalCreateAndEditCourse = ({handleClose, show, addOrEditCourse, name = null, startYear = null, maximumStudentsCount = null,
                                       semester = null, requirements = "", annotations = "", teacher = null}) => {
+    const dispatch = useDispatch()
     const [validated, setValidated] = useState(false)
     const [requirement, setRequirements] = useState("");
     const [annotation, setAnnotations] = useState("");
-    const users = useListUsers(null)
+    useListUsers(dispatch)
+    const users = useSelector(state => state.users.users)
 
     const handleSetAnnotations = (value) => setAnnotations(value)
 
@@ -101,7 +104,18 @@ const ModalCreateAndEditCourse = ({handleClose, show, addOrEditCourse, name = nu
 ModalCreateAndEditCourse.propTypes = {
     handleClose: PropTypes.func.isRequired,
     show: PropTypes.bool.isRequired,
-    addOrEditCourse: PropTypes.func.isRequired
+    addOrEditCourse: PropTypes.func.isRequired,
+    name: PropTypes.string,
+    startYear: PropTypes.number,
+    maximumStudentsCount: PropTypes.number,
+    semester: PropTypes.string,
+    requirements: PropTypes.string,
+    annotations: PropTypes.string,
+    teacher: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        email: PropTypes.string.isRequired,
+        isMain: PropTypes.bool.isRequired
+    })
 }
 
 export default ModalCreateAndEditCourse

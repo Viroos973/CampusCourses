@@ -1,22 +1,19 @@
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {api} from "../instance.js";
 import {URL_API} from "../../const/url.js";
+import usersActions from "../../store/actionCreators/usersActions.js";
 
-export const useListUsers = (defaultValue) => {
-    const [users, setUsers] = useState(defaultValue)
-
+export const useListUsers = (dispatch) => {
     useEffect(() => {
         const axiosUsers = async() => {
             try {
                 const response = await api.get(URL_API.LIST_USERS)
-                setUsers(response.data)
+                dispatch(usersActions(response.data))
             } catch {
-                setUsers(defaultValue)
+                dispatch(usersActions(null))
             }
         }
 
         axiosUsers()
     }, [])
-
-    return users
 }

@@ -1,17 +1,17 @@
 import {useCourse} from "../api/hook/useCourse.js";
 import {Button, ListGroup} from "react-bootstrap";
-import ListItemCourses from "../components/listItemCourses.jsx";
+import ListItemCourses from "../components/ListItemCourses.jsx";
 import PropTypes from "prop-types";
 import {useSelector} from "react-redux";
 import {useGroup} from "../api/hook/index.js";
 import {useState} from "react";
-import ModalCreateAndEditCourse from "../components/ModalCreateAndEditCourse.jsx";
+import ModalCreateAndEditCourse from "../components/Modals/ModalCreateAndEditCourse.jsx";
 
 const ListCourses = ({url}) => {
     const [show, setShow] = useState(false)
     const [dataCourse, groupId, loading, error, addCourse] = useCourse(null, url)
     const [data] = useGroup(null)
-    const roles = useSelector(state => state.roles)
+    const roles = useSelector(state => state.roles.roles)
 
     const handleGetName = () => {
         if (data !== null){

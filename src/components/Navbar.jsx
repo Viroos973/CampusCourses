@@ -6,8 +6,8 @@ import {useDispatch, useSelector} from "react-redux";
 
 const NavbarComponent = () => {
     const dispatch = useDispatch()
-    const roles = useSelector(state => state.roles)
     useRoles(dispatch)
+    const roles = useSelector(state => state.roles.roles)
 
     return (
         <Navbar expand="lg" data-bs-theme="dark" className="bg-secondary">

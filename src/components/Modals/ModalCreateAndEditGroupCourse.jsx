@@ -22,7 +22,7 @@ const ModalCreateAndEditGroupCourse = ({show, handleClose, name = null, editOrCr
     return (
         <Modal show={show} backdrop="static" keyboard={false} onHide={handleClose}>
             <Modal.Header closeButton>
-                <Modal.Title>Редактирование группы</Modal.Title>
+                <Modal.Title>{name !== null ? "Редактирование" : "Создание"} группы</Modal.Title>
             </Modal.Header>
             <Form noValidate validated={validated} onSubmit={handleSubmit}>
                 <Modal.Body>

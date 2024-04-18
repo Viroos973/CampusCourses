@@ -13,6 +13,11 @@ export const useRoles = (dispatch) => {
                 localStorage.setItem("email", "")
                 localStorage.setItem("token", "")
                 dispatch(roleActions(null))
+
+                const path = window.location.pathname
+                if (path !== "/" && path !== "/login" && path !== "/registration"){
+                    window.location.href = "/"
+                }
             }
         };
 

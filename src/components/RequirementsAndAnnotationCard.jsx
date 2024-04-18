@@ -1,4 +1,4 @@
-import {Button, Card, ListGroup, Tab, Tabs} from "react-bootstrap";
+import {Badge, Button, Card, ListGroup, Tab, Tabs} from "react-bootstrap";
 import PropTypes from "prop-types";
 import {useState} from "react";
 import ModalCreateNotification from "./Modals/ModalCreateNotification.jsx";
@@ -23,7 +23,9 @@ const RequirementsAndAnnotationCard = ({requirements, annotations, notifications
                         <Card.Body dangerouslySetInnerHTML={{ __html: annotations }} className="pb-0"></Card.Body>
                     </Card>
                 </Tab>
-                <Tab title="Уведомления" eventKey="notification">
+                <Tab
+                    title={<span>Уведомления <Badge bg="danger">{notifications.length > 9 ? "9+" : notifications.length}</Badge></span>}
+                    eventKey="notification">
                     <Card className="rounded-0">
                         <Card.Body>
                             {isAdmin || isTeacher ? (
